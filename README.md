@@ -1,4 +1,4 @@
-<h1 align="center">Welcome to Habits 👋</h1>
+<h1 align="center">Welcome to Gotify Indicator 👋</h1>
 
 ![Licencia MIT](https://img.shields.io/badge/Licencia-MIT-green)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/b3e704c3f150404582cd23b9fcb4be32)](https://www.codacy.com/manual/atareao/habits?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=atareao/habits&amp;utm_campaign=Badge_Grade)
@@ -6,12 +6,11 @@
 
 [![Twitter: atareao](https://img.shields.io/twitter/follow/atareao.svg?style=social)](https://twitter.com/atareao)
 
-Habits is an application to monitor your habits with your PC. So you can study how many kilometers travel with your
-mouse or how many keystrokes.
+Gotify Indicator is an application to recieve and send messages from your own Gotify Server.
 
-[![Habits](./data/icons/habits.svg)](https://www.atareao.es/aplicacion/habits/)
+[![Habits](./data/icons/gotify-indicator.svg)](https://www.atareao.es/aplicacion/gotify-indicator/)
 
-## 🏠 [Homepage](https://www.atareao.es/applicacion/habits)
+## 🏠 [Homepage](https://www.atareao.es/applicacion/gotify-indicator)
 
 ## Prerequisites
 
@@ -38,31 +37,18 @@ To install **Habits**, follow these steps:
 ```
 sudo add-apt-repository ppa:atareao/atareao
 sudo apt update
-sudo apt install habits
+sudo apt install gotify-indicator
 ```
 
-## Using Habits
+## Using Gotify Indicator
 
-To use **Habits**, open Habits, and configure it,
+To use **Gotify Indicator**, open it, and configure it,
 
-![start Habits](./screenshots/image01.png)
+![start Habits](./screenshots/gotify-indicator-01.png)
 
-If you select bluetooth then,
+## Contributing to Gotify Indicator
 
-![bluetooth](./screenshots/image02.png)
-
-To add a new device click on `add device` in the menu,
-
-![add device](./screenshots/image03.png)
-
-Then select the device you want to use to unlock Ubuntu, Linux Mint, etc.
-
-![select device](./screenshots/image04.png)
-
-
-## Contributing to Habits
-
-To contribute to **Habits**, follow these steps:
+To contribute to **Gotify Indicator**, follow these steps:
 
 1. Fork this repository.
 2. Create a branch: `git checkout -b <branch_name>`.
