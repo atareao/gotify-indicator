@@ -1,11 +1,11 @@
 [Desktop Entry]
 Type=Application
-Exec=/opt/extras.ubuntu.com/habits/bin/habits
+Exec=/opt/extras.ubuntu.com/gotify-indicator/bin/gotify-indicator
 Hidden=false
 NoDisplay=false
 X-GNOME-Autostart-enabled=true
-Name[es_ES]=habits-autostart
-Name=habits-autostart
-Comment[es_ES]=habits official shortcut
-Comment=habits official shortcut
+Name[es_ES]=gotify-indicator-autostart
+Name=gotify-indicator-autostart
+Comment[es_ES]=gotify-indicator official shortcut
+Comment=gotify-indicator official shortcut
 X-GNOME-Autostart-Delay=15
