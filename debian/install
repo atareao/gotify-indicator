@@ -1,0 +1,9 @@
+
+bin /opt/extras.ubuntu.com/gotify-indicator
+debian/changelog /opt/extras.ubuntu.com/gotify-indicator/share/gotify-indicator
+src/*.py /opt/extras.ubuntu.com/gotify-indicator/share/gotify-indicator
+src/websocket/*.py /opt/extras.ubuntu.com/gotify-indicator/share/gotify-indicator/websocket
+data/icons /opt/extras.ubuntu.com/gotify-indicator/share
+data/autostart /opt/extras.ubuntu.com/gotify-indicator/share
+data/gotify-indicator.desktop /usr/share/applications
+data/icons/gotify-indicator.svg /usr/share/icons/hicolor/scalable/apps

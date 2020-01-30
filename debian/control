@@ -1,0 +1,20 @@
+Source: gotify-indicator
+Section: utils
+Priority: extra
+Maintainer: Lorenzo Carbonell Cerezo <lorenzo.carbonell.cerezo@gmail.com>
+Build-Depends: debhelper (>= 9), python, python-distutils-extra, python-polib, python-configparser
+Standards-Version: 3.9.5
+Homepage: http://www.atareao.es
+
+Package: gotify-indicator
+Architecture: all
+Depends: ${misc:Depends}, ${python:Depends},
+    gir1.2-gtk-3.0,
+    gir1.2-glib-2.0,
+    gir1.2-gdkpixbuf-2.0,
+    gir1.2-appindicator3-0.1
+Description: Recieve Gotify notifications on your PC
+ Gotify is a server that can send and recieve messages. It works as a push
+ notifications server. With Gotify-Indicator you can send and recieve messages
+ directly from your computer. So you can send messages to other devices that
+ are connected to the same server.

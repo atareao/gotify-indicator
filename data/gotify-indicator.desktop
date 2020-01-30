@@ -1,0 +1,17 @@
+[Desktop Entry]
+Name = Gotify Indicator
+GenericName = Gotify Indicator
+Comment = Gotify Indicator
+Exec = /opt/extras.ubuntu.com/gotify-indicator/bin/gotify-indicator
+Icon = gotify-indicator
+Type = Application
+Terminal = false
+StartupNotify = true
+Encoding = utf-8
+Categories = Utility;
+Name[en_GB] = Gotify Indicator
+Name[es] = Hábitos
+GenericName[en_GB] = Gotify Indicator
+GenericName[es] = Gotify Indicator
+Comment[en_GB] = Send and recieve Gotify notifications
+Comment[es] = Recive y envía notificaciones de tu servidor Gotify
