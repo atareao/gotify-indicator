@@ -35,8 +35,9 @@ class GotifyClient(threading.Thread):
                  application_token, client_token, on_message, debug=False):
         threading.Thread.__init__(self)
         protocol = 'https' if https_protocol else 'http'
+        ws_protocol = 'wss' if https_protocol else 'ws'
         self.url = '{}://{}'.format(protocol, base_url)
-        self.wss_url = '{}://{}/stream'.format('wss', base_url)
+        self.wss_url = '{}://{}/stream'.format(ws_protocol, base_url)
         self.application_name = application_name
         self.application_token = application_token
         self.ws = websocket.WebSocketApp(self.wss_url,

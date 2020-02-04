@@ -288,8 +288,8 @@ SOFTWARE.''')
         application_token = preferences['application_token']
         client_token = preferences['client_token']
 
-        if https_protocol and base_url and application_name \
-                and application_token and client_token:
+        if base_url and application_name and application_token \
+                and client_token:
             self.gotify_client = GotifyClient(https_protocol,
                                               base_url,
                                               application_name,
