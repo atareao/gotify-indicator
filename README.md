@@ -52,7 +52,7 @@ Create a client in the Gotify web. Write down, client token
 
 In the configuration of Gotify Indicator set the token for the application and the client
 
-![Gotify-Indicator Configuration](./screenshots/configuration.png)
+![Gotify-Indicator Configuration](./screenshots/configuracion.png)
 
 ## Contributing to Gotify Indicator
 
