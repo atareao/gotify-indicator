@@ -1,0 +1,113 @@
+# Language * translations for habits package.
+# Copyright (C) 2019 THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the habits package.
+# Lorenzo <lorenzo.carbonell.cerezo@gmail.com>, 2019.
+# Albano  <albano_battistella@hotmail.com>, 2020.
+msgid ""
+msgstr ""
+"Project-Id-Version: habits - 0.1.0-0extras19.10.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-02-02 07:46+0100\n"
+"PO-Revision-Date: 2020-02-04 08:54+0100\n"
+"Last-Translator: Albano Battistella <albano_battistella@hotmail.com>\n"
+"Language-Team:Italian\n"
+"Language:It\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/preferences.py:52 src/indicator.py:108 src/message_dialog.py:51
+msgid "Preferences"
+msgstr "Preferenze"
+
+#: src/preferences.py:58
+msgid "HTTPS Protocol:"
+msgstr "Protocolo HTTPS:"
+
+#: src/preferences.py:61
+msgid "Base url (without protocol):"
+msgstr "URL base (sin protocolo)"
+
+#: src/preferences.py:65
+msgid "App Gotify key:"
+msgstr "Chiave App Gotify:"
+
+#: src/preferences.py:68
+msgid "Client Gotify key:"
+msgstr "Chiave client Gotify:"
+
+#: src/preferences.py:71
+msgid "App Id"
+msgstr "ID App"
+
+#: src/preferences.py:77
+msgid "Theme light:"
+msgstr "Tema chiaro:"
+
+#: src/preferences.py:80
+msgid "Autostart:"
+msgstr "Avvio automatico:"
+
+#: src/indicator.py:95 src/indicator.py:255
+msgid "Stop service"
+msgstr "Arresta servizio"
+
+#: src/indicator.py:102
+msgid "Send message"
+msgstr "Invia Messaggio"
+
+#: src/indicator.py:112
+msgid "Help"
+msgstr "Aiuto"
+
+#: src/indicator.py:118
+msgid "Quit"
+msgstr "Esci"
+
+#: src/indicator.py:150
+msgid "Homepage"
+msgstr "Sito Web"
+
+#: src/indicator.py:157
+msgid "Get help online..."
+msgstr "Chiedi assistenza online..."
+
+#: src/indicator.py:165
+msgid "Translate this application..."
+msgstr "Traduci questa aplicazione..."
+
+#: src/indicator.py:172
+msgid "Report a bug..."
+msgstr "Segnala un bug..."
+
+#: src/indicator.py:181
+msgid "Found me in Twitter"
+msgstr "Trovami su Twitter"
+
+#: src/indicator.py:187
+msgid "Found me in GitHub"
+msgstr "Trovami su GitHub"
+
+#: src/indicator.py:193
+msgid "Found me in Mastodon"
+msgstr "Trovami su Mastodon"
+
+#: src/indicator.py:199
+msgid "About"
+msgstr "Informazioni su"
+
+#: src/indicator.py:213
+msgid "Gotify Indicator"
+msgstr "Gotify Indicator"
+
+#: src/indicator.py:258
+msgid "Start service"
+msgstr "Avvio servizio"
+
+#: src/indicator.py:299
+msgid "Please configure Gotify Indicator"
+msgstr "Per favore configura Gotify Indicator"
+
+#: src/message_dialog.py:56
+msgid "Message:"
+msgstr "Messaggio:"
