@@ -1,3 +1,10 @@
+gotify-indicator (0.1.1-0extras18.04.2) bionic; urgency=medium
+
+  * Check if there is configuration
+  * Add spanish translation
+
+ -- Lorenzo Carbonell <lorenzo.carbonell.cerezo@gmail.com>  Mon, 03 Feb 2020 22:05:52 +0100
+
 gotify-indicator (0.1.0-0extras18.04.03) bionic; urgency=medium
 
   * First version

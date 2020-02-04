@@ -31,20 +31,20 @@ import json
 
 
 class GotifyClient(threading.Thread):
-    def __init__(self, https_protocol, base_url, app_gotify_key,
-                 client_gotify_key, appid, on_message, debug=False):
+    def __init__(self, https_protocol, base_url, application_name,
+                 application_token, client_token, on_message, debug=False):
         threading.Thread.__init__(self)
         protocol = 'https' if https_protocol else 'http'
         self.url = '{}://{}'.format(protocol, base_url)
         self.wss_url = '{}://{}/stream'.format('wss', base_url)
-        self.app_gotify_key = app_gotify_key
-        self.appid = appid
+        self.application_name = application_name
+        self.application_token = application_token
         self.ws = websocket.WebSocketApp(self.wss_url,
                                          on_message=on_message,
                                          on_error=self.on_error,
                                          on_close=self.on_close,
                                          header={"X-Gotify-Key":
-                                                 client_gotify_key})
+                                                 client_token})
         if debug:
             websocket.enableTrace(True)
         self.running = False
@@ -63,7 +63,7 @@ class GotifyClient(threading.Thread):
     def on_message(self, message):
         print(message)
         message = json.loads(message)
-        if self.appid != message['appid']:
+        if self.application_name != message['title']:
             print(message['title'])
             print(message)
 
@@ -74,13 +74,13 @@ class GotifyClient(threading.Thread):
         print("### closed ###")
 
     def get_health(self):
-        headers = {'X-Gotify-Key': self.app_gotify_key}
+        headers = {'X-Gotify-Key': self.application_token}
         url = '{}/{}'.format(self.url, 'health')
         ans = requests.get(url, headers=headers)
         return ans.json()
 
     def send_message(self, message, title=None, priority=0):
-        headers = {'X-Gotify-Key': self.app_gotify_key}
+        headers = {'X-Gotify-Key': self.application_token}
         json = {'message': message,
                 'priority': priority}
         if title:
@@ -98,9 +98,9 @@ if __name__ == "__main__":
 
     https_protocol = preferences['https_protocol']
     base_url = preferences['base_url']
-    app_gotify_key = preferences['app_gotify_key']
-    client_gotify_key = preferences['client_gotify_key']
-    appid = preferences['appid']
+    application_name = preferences['application_name']
+    application_token = preferences['application_token']
+    client_token = preferences['client_token']
 
     def on_message(ws, message):
         print(message)
@@ -108,9 +108,9 @@ if __name__ == "__main__":
     try:
         gc = GotifyClient(https_protocol,
                           base_url,
-                          app_gotify_key,
-                          client_gotify_key,
-                          appid,
+                          application_name,
+                          application_token,
+                          client_token,
                           on_message,
                           True)
         print(gc.get_health())

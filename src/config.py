@@ -32,8 +32,9 @@ PARAMS = {'stats': {},
           'preferences': {'theme-light': True,
                           'https_protocol': False,
                           'base_url': '',
-                          'app_gotify_key': '',
-                          'client_gotify_key': '',
+                          'application_name': '',
+                          'application_token': '',
+                          'client_token': '',
                           'appid': ''}
           }
 

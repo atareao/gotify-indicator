@@ -46,6 +46,8 @@ class LeftLabel(Gtk.Label):
         self.set_label(label)
         self.set_xalign(0)
 
+# class ClassicSwitch(Gt)
+
 
 class Preferences(BaseDialog):
     def __init__(self):
@@ -57,29 +59,38 @@ class Preferences(BaseDialog):
         BaseDialog.init_ui(self)
         self.grid.attach(LeftLabel(_('HTTPS Protocol:')), 0, 0, 1, 1)
         self.https_protocol = Gtk.Switch.new()
+        self.https_protocol.set_halign(Gtk.Align.START)
         self.grid.attach(self.https_protocol, 1, 0, 1, 1)
         self.grid.attach(LeftLabel(_('Base url (without protocol):')),
                          0, 1, 1, 1)
         self.base_url = Gtk.Entry.new()
         self.grid.attach(self.base_url, 1, 1, 1, 1)
-        self.grid.attach(LeftLabel(_('App Gotify key:')), 0, 2, 1, 1)
-        self.app_gotify_key = Gtk.Entry.new()
-        self.grid.attach(self.app_gotify_key, 1, 2, 1, 1)
-        self.grid.attach(LeftLabel(_('Client Gotify key:')), 0, 3, 1, 1)
-        self.client_gotify_key = Gtk.Entry.new()
-        self.grid.attach(self.client_gotify_key, 1, 3, 1, 1)
-        self.grid.attach(LeftLabel(_('App Id')), 0, 4, 1, 1)
-        self.appid = Gtk.Entry.new()
-        self.grid.attach(self.appid, 1, 4, 1, 1)
+
+        self.grid.attach(Gtk.Separator(), 0, 2, 2, 1)
+
+        self.grid.attach(LeftLabel(_('Application name')), 0, 3, 1, 1)
+        self.application_name = Gtk.Entry.new()
+        self.grid.attach(self.application_name, 1, 3, 1, 1)
+        self.grid.attach(LeftLabel(_('Application token:')), 0, 4, 1, 1)
+        self.application_token = Gtk.Entry.new()
+        self.grid.attach(self.application_token, 1, 4, 1, 1)
 
         self.grid.attach(Gtk.Separator(), 0, 5, 2, 1)
 
-        self.grid.attach(LeftLabel(_('Theme light:')), 0, 6, 1, 1)
+        self.grid.attach(LeftLabel(_('Client token:')), 0, 6, 1, 1)
+        self.client_token = Gtk.Entry.new()
+        self.grid.attach(self.client_token, 1, 6, 1, 1)
+
+        self.grid.attach(Gtk.Separator(), 0, 7, 2, 1)
+
+        self.grid.attach(LeftLabel(_('Theme light:')), 0, 8, 1, 1)
         self.theme_light = Gtk.Switch.new()
-        self.grid.attach(self.theme_light, 1, 6, 1, 1)
-        self.grid.attach(LeftLabel(_('Autostart:')), 0, 7, 1, 1)
+        self.theme_light.set_halign(Gtk.Align.START)
+        self.grid.attach(self.theme_light, 1, 8, 1, 1)
+        self.grid.attach(LeftLabel(_('Autostart:')), 0, 9, 1, 1)
         self.autostart = Gtk.Switch.new()
-        self.grid.attach(self.autostart, 1, 7, 1, 1)
+        self.autostart.set_halign(Gtk.Align.START)
+        self.grid.attach(self.autostart, 1, 9, 1, 1)
 
     def load(self):
         configuration = Configuration()
@@ -87,9 +98,9 @@ class Preferences(BaseDialog):
 
         self.https_protocol.set_active(preferences['https_protocol'])
         self.base_url.set_text(preferences['base_url'])
-        self.app_gotify_key.set_text(preferences['app_gotify_key'])
-        self.client_gotify_key.set_text(preferences['client_gotify_key'])
-        self.appid.set_text(preferences['appid'])
+        self.application_name.set_text(preferences['application_name'])
+        self.application_token.set_text(preferences['application_token'])
+        self.client_token.set_text(preferences['client_token'])
 
         self.theme_light.set_active(preferences['theme-light'])
 
@@ -106,9 +117,9 @@ class Preferences(BaseDialog):
 
         preferences['https_protocol'] = self.https_protocol.get_active()
         preferences['base_url'] = self.base_url.get_text()
-        preferences['app_gotify_key'] = self.app_gotify_key.get_text()
-        preferences['client_gotify_key'] = self.client_gotify_key.get_text()
-        preferences['appid'] = self.appid.get_text()
+        preferences['application_name'] = self.application_name.get_text()
+        preferences['application_token'] = self.application_token.get_text()
+        preferences['client_token'] = self.client_token.get_text()
 
         preferences['theme-light'] = self.theme_light.get_active()
 

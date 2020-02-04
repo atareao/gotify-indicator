@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: habits - 0.1.0-0extras19.10.11\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-12-27 09:57+0100\n"
+"POT-Creation-Date: 2020-02-02 07:46+0100\n"
 "PO-Revision-Date: 2019-12-27 09:54+0100\n"
 "Last-Translator: Lorenzo <lorenzo.carbonell.cerezo@gmail.com>\n"
 "Language-Team: Language *\n"
@@ -16,79 +16,98 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/preferences.py:43 src/indicator.py:104
+#: src/preferences.py:52 src/indicator.py:108 src/message_dialog.py:51
 msgid "Preferences"
 msgstr "Preferencias"
 
-#: src/preferences.py:49
+#: src/preferences.py:58
+msgid "HTTPS Protocol:"
+msgstr "Protocolo HTTPS:"
+
+#: src/preferences.py:61
+msgid "Base url (without protocol):"
+msgstr "URL base (sin protocolo)"
+
+#: src/preferences.py:65
+msgid "App Gotify key:"
+msgstr "Clave de la App Gotify:"
+
+#: src/preferences.py:68
+msgid "Client Gotify key:"
+msgstr "Clave del cliente Gotify:"
+
+#: src/preferences.py:71
+msgid "App Id"
+msgstr "Número de la App Gotify:"
+
+#: src/preferences.py:77
 msgid "Theme light:"
 msgstr "Tema claro:"
 
-#: src/preferences.py:52
-msgid "Start actived:"
-msgstr "Inicia activado:"
-
-#: src/preferences.py:55
+#: src/preferences.py:80
 msgid "Autostart:"
 msgstr "Autoinicio:"
 
-#: src/indicator.py:91 src/indicator.py:272
-msgid "Start monitor"
-msgstr "Comienza a monitorizar"
+#: src/indicator.py:95 src/indicator.py:255
+msgid "Stop service"
+msgstr "Detener servicio"
 
-#: src/indicator.py:98
-msgid "Statistics"
-msgstr "Estadísticas"
+#: src/indicator.py:102
+msgid "Send message"
+msgstr "Enviar mensaje"
 
-#: src/indicator.py:108
+#: src/indicator.py:112
 msgid "Help"
 msgstr "Ayuda"
 
-#: src/indicator.py:114
+#: src/indicator.py:118
 msgid "Quit"
 msgstr "Salir"
 
-#: src/indicator.py:133 src/indicator.py:223
-msgid "Habits"
-msgstr "Hábitos"
-
-#: src/indicator.py:134
-msgid "Mouse and keyboard"
-msgstr "Ratón y teclado"
-
-#: src/indicator.py:163
+#: src/indicator.py:150
 msgid "Homepage"
 msgstr "Sitio web"
 
-#: src/indicator.py:169
+#: src/indicator.py:157
 msgid "Get help online..."
 msgstr "Consigue ayuda en línea..."
 
-#: src/indicator.py:176
+#: src/indicator.py:165
 msgid "Translate this application..."
 msgstr "Traduce esta aplicación..."
 
-#: src/indicator.py:182
+#: src/indicator.py:172
 msgid "Report a bug..."
 msgstr "Informa de un error..."
 
-#: src/indicator.py:191
+#: src/indicator.py:181
 msgid "Found me in Twitter"
 msgstr "Encuéntrame en Twitter"
 
-#: src/indicator.py:197
-#, fuzzy
+#: src/indicator.py:187
 msgid "Found me in GitHub"
 msgstr "Encuéntrame en GitHub"
 
-#: src/indicator.py:203
+#: src/indicator.py:193
 msgid "Found me in Mastodon"
 msgstr "Encuéntrame en Mastodon"
 
-#: src/indicator.py:209
+#: src/indicator.py:199
 msgid "About"
 msgstr "Acerca de..."
 
-#: src/indicator.py:281
-msgid "Stop monitor"
-msgstr "Finaliza la monitorización"
+#: src/indicator.py:213
+msgid "Gotify Indicator"
+msgstr "Gotify Indicator"
+
+#: src/indicator.py:258
+msgid "Start service"
+msgstr "Inciar servicio"
+
+#: src/indicator.py:299
+msgid "Please configure Gotify Indicator"
+msgstr "Por favor configura Gotify Indicator"
+
+#: src/message_dialog.py:56
+msgid "Message:"
+msgstr "Mensaje:"

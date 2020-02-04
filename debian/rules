@@ -34,10 +34,10 @@ install: build
 	dh_installdirs
 	dh_install
 	# Create languages directories
-	mkdir -p ${CURDIR}/debian/habits/usr/share/locale-langpack/es/LC_MESSAGES
+	mkdir -p ${CURDIR}/debian/gotify-indicator/usr/share/locale-langpack/es/LC_MESSAGES
 	# End create languages directories
 	# Compile languages
-	msgfmt po/es.po -o ${CURDIR}/debian/habits/usr/share/locale-langpack/es/LC_MESSAGES/habits.mo
+	msgfmt po/es.po -o ${CURDIR}/debian/gotify-indicator/usr/share/locale-langpack/es/LC_MESSAGES/gotify-indicator.mo
 	# End comile languages
 	# Add here commands to install the package into debian/<packagename>.
 	#$(MAKE) prefix=`pwd`/debian/`dh_listpackages`/usr install

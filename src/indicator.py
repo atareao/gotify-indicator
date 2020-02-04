@@ -84,7 +84,7 @@ class Indicator(object):
         configuration = Configuration()
         preferences = configuration.get('preferences')
         self.theme_light = preferences['theme-light']
-        self.appid = preferences['appid']
+        self.application_name = preferences['application_name']
 
         self.stop()
         self.start()
@@ -92,7 +92,7 @@ class Indicator(object):
     def build_menu(self):
         menu = Gtk.Menu()
         self.menu_toggle_service = Gtk.MenuItem.new_with_label(
-            _('Stop service'))
+            _('Start service'))
         self.menu_toggle_service.connect('activate', self.toggle_service)
         menu.append(self.menu_toggle_service)
 
@@ -120,7 +120,7 @@ class Indicator(object):
         menu.append(menu_quit)
         menu.show_all()
         return menu
-    
+
     def on_send_message(self, widget):
         widget.set_sensitive(False)
         messageDialog = MessageDialog()
@@ -134,14 +134,19 @@ class Indicator(object):
 
     def show_preferences(self, widget):
         widget.set_sensitive(False)
-        preferences = Preferences()
-        response = preferences.run()
+        preferences_dialog = Preferences()
+        response = preferences_dialog.run()
         if response == Gtk.ResponseType.ACCEPT:
-            preferences.save()
+            preferences_dialog.save()
+            configuration = Configuration()
+            preferences = configuration.get('preferences')
+            self.theme_light = preferences['theme-light']
+            self.application_name = preferences['application_name']
 
-            self.set_icon(self.gotify_client is not None and
-                          self.gotify_client.is_running())
-        preferences.destroy()
+            if self.gotify_client is not None and self.gotify_client.is_running():
+                self.stop()
+                self.start()
+        preferences_dialog.destroy()
         widget.set_sensitive(True)
 
     def get_help_menu(self):
@@ -252,10 +257,9 @@ SOFTWARE.''')
     def toggle_service(self, widget):
         if self.gotify_client is None:
             self.start()
-            self.menu_toggle_service.set_label(_('Stop service'))
+            
         else:
             self.stop()
-            self.menu_toggle_service.set_label(_('Start service'))
 
     def stop(self):
         self.set_icon(False)
@@ -263,11 +267,12 @@ SOFTWARE.''')
             if self.gotify_client.is_running():
                 self.gotify_client.close()
         self.gotify_client = None
+        self.menu_toggle_service.set_label(_('Start service'))
 
     def on_message(self, message):
         message = json.loads(message)
         icon = os.path.join(config.ICONDIR, 'gotify-indicator.svg')
-        if str(message['appid']) != str(self.appid):
+        if message['title'] != self.application_name:
             self.notification.update(message['title'],
                                      message['message'],
                                      icon)
@@ -279,20 +284,29 @@ SOFTWARE.''')
 
         https_protocol = preferences['https_protocol']
         base_url = preferences['base_url']
-        app_gotify_key = preferences['app_gotify_key']
-        client_gotify_key = preferences['client_gotify_key']
-        appid = preferences['appid']
+        application_name = preferences['application_name']
+        application_token = preferences['application_token']
+        client_token = preferences['client_token']
 
-        self.gotify_client = GotifyClient(https_protocol,
-                                          base_url,
-                                          app_gotify_key,
-                                          client_gotify_key,
-                                          appid,
-                                          self.on_message,
-                                          True)
-        self.gotify_client.start()
-        self.set_icon(True)
-        print('started')
+        if https_protocol and base_url and application_name \
+                and application_token and client_token:
+            self.gotify_client = GotifyClient(https_protocol,
+                                              base_url,
+                                              application_name,
+                                              application_token,
+                                              client_token,
+                                              self.on_message,
+                                              True)
+            self.gotify_client.start()
+            self.set_icon(True)
+            self.menu_toggle_service.set_label(_('Stop service'))
+            return True
+        message = _('Please configure Gotify Indicator')
+        icon = os.path.join(config.ICONDIR, 'gotify-indicator.svg')
+        self.notification.update('Gofify-Indictator',
+                                    message,
+                                    icon)
+        self.notification.show()
 
     def quit(self, menu_item):
         self.stop()
