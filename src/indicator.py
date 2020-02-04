@@ -143,7 +143,8 @@ class Indicator(object):
             self.theme_light = preferences['theme-light']
             self.application_name = preferences['application_name']
 
-            if self.gotify_client is not None and self.gotify_client.is_running():
+            if self.gotify_client is not None and \
+                    self.gotify_client.is_running():
                 self.stop()
                 self.start()
         preferences_dialog.destroy()
@@ -257,7 +258,6 @@ SOFTWARE.''')
     def toggle_service(self, widget):
         if self.gotify_client is None:
             self.start()
-            
         else:
             self.stop()
 
@@ -304,8 +304,8 @@ SOFTWARE.''')
         message = _('Please configure Gotify Indicator')
         icon = os.path.join(config.ICONDIR, 'gotify-indicator.svg')
         self.notification.update('Gofify-Indictator',
-                                    message,
-                                    icon)
+                                 message,
+                                 icon)
         self.notification.show()
 
     def quit(self, menu_item):

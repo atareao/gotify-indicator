@@ -1,14 +1,14 @@
 <h1 align="center">Welcome to Gotify Indicator 👋</h1>
 
 ![Licencia MIT](https://img.shields.io/badge/Licencia-MIT-green)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/b3e704c3f150404582cd23b9fcb4be32)](https://www.codacy.com/manual/atareao/habits?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=atareao/habits&amp;utm_campaign=Badge_Grade)
-[![CodeFactor](https://www.codefactor.io/repository/github/atareao/habits/badge/master)](https://www.codefactor.io/repository/github/atareao/habits/overview/master)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/b3e704c3f150404582cd23b9fcb4be32)](https://www.codacy.com/manual/atareao/Gotify-Indicator?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=atareao/gotify-indicator&amp;utm_campaign=Badge_Grade)
+[![CodeFactor](https://www.codefactor.io/repository/github/atareao/gotify-indicator/badge/master)](https://www.codefactor.io/repository/github/atareao/gotify-indicator/overview/master)
 
 [![Twitter: atareao](https://img.shields.io/twitter/follow/atareao.svg?style=social)](https://twitter.com/atareao)
 
 Gotify Indicator is an application to recieve and send messages from your own Gotify Server.
 
-[![Habits](./data/icons/gotify-indicator.svg)](https://www.atareao.es/aplicacion/gotify-indicator/)
+[![Gotify-Indicator](./data/icons/gotify-indicator.svg)](https://www.atareao.es/aplicacion/gotify-indicator/)
 
 ## 🏠 [Homepage](https://www.atareao.es/applicacion/gotify-indicator)
 
@@ -20,17 +20,17 @@ Before you begin, ensure you have met the following requirements:
 * If you clone the repository, you need, at least, these dependecies,
 
 ```
-gir1.2-gtk-3.0,
-gir1.2-glib-2.0,
-gir1.2-gdkpixbuf-2.0,
-gir1.2-appindicator3-0.1,
-gir1.2-webkit2-4.0,
-python3-xlib
+python3
+gir1.2-gtk-3.0
+gir1.2-glib-2.0
+gir1.2-gdkpixbuf-2.0
+gir1.2-appindicator3-0.1
+gir1.2-notify-0.7
 ```
 
-## Installing Habits
+## Installing Gotify-Indicator
 
-To install **Habits**, follow these steps:
+To install **Gotify-Indicator**, follow these steps:
 
 * In a terminal (`Ctrl+Alt+T`), run these commands
 
@@ -42,9 +42,17 @@ sudo apt install gotify-indicator
 
 ## Using Gotify Indicator
 
-To use **Gotify Indicator**, open it, and configure it,
+To use **Gotify Indicator**, open it, and configure it. First, create an application in the Gotify web. Write down, application name and application token.
 
-![start Habits](./screenshots/gotify-indicator-01.png)
+![Application Configuration](./screenshots/aplications.png)
+
+Create a client in the Gotify web. Write down, client token
+
+![Client Configuration](./screenshots/clients.png)
+
+In the configuration of Gotify Indicator set the token for the application and the client
+
+![Gotify-Indicator Configuration](./screenshots/configuration.png)
 
 ## Contributing to Gotify Indicator
 
