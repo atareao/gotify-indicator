@@ -27,6 +27,7 @@ import codecs
 import os
 import json
 from config import CONFIG_DIR
+from config import CACHE_DIR
 from config import CONFIG_FILE
 from config import PARAMS
 
@@ -43,6 +44,9 @@ class Configuration(object):
                 os.makedirs(CONFIG_DIR, 0o700)
             open(CONFIG_FILE, 'a').close()
             os.chmod(CONFIG_FILE, 0o600)
+
+        if not os.path.exists(CACHE_DIR):
+            os.makedirs(CACHE_DIR, 0o700)
 
     def has(self, key):
         return key in self.params.keys()

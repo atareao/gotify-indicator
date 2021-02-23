@@ -40,6 +40,7 @@ PARAMS = {'stats': {},
 
 CONFIG_DIR = os.path.join(os.path.expanduser('~'), '.config/gotify-indicator')
 CONFIG_FILE = os.path.join(CONFIG_DIR, 'gotify-indicator.conf')
+CACHE_DIR = os.path.join(os.path.expanduser('~'), '.cache/gotify-indicator/')
 
 
 def is_package():
