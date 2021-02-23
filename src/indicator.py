@@ -274,7 +274,7 @@ SOFTWARE.''')
 
     def on_message(self, message):
         message = json.loads(message)
-        icon=os.path.join(config.CACHE_DIR, str(message['appid']))
+        icon = os.path.join(config.CACHE_DIR, str(message['appid']))
         if message['title'] != self.application_name:
             self.notification.update(message['title'],
                                      message['message'],

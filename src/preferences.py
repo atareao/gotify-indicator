@@ -24,6 +24,7 @@
 # SOFTWARE.
 
 import gi
+
 try:
     gi.require_version('Gtk', '3.0')
     gi.require_version('Gdk', '3.0')
@@ -45,6 +46,7 @@ class LeftLabel(Gtk.Label):
         Gtk.Label.__init__(self)
         self.set_label(label)
         self.set_xalign(0)
+
 
 # class ClassicSwitch(Gt)
 
@@ -114,7 +116,7 @@ class Preferences(BaseDialog):
         self.notification_sound.set_text("")
         try:
             self.notification_sound.set_text(preferences['notification_sound'])
-        except:
+        except IndexError:
             print("No custom notification set!")
 
         self.theme_light.set_active(preferences['theme-light'])
