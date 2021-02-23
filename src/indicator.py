@@ -280,6 +280,16 @@ SOFTWARE.''')
                                      message['message'],
                                      icon)
             self.notification.show()
+            play(self.getNotificationSound())
+
+    def getNotificationSound(self):
+        path = os.path.join(config.SOUNDDIR, 'default.mp3')
+        configuration = Configuration()
+        preferences = configuration.get('preferences')
+        custom_path = preferences['notification_sound']
+        if custom_path:
+            path = custom_path
+        return AudioSegment.from_mp3(path)
 
     def start(self):
         configuration = Configuration()

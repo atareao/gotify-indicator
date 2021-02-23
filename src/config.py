@@ -35,6 +35,7 @@ PARAMS = {'stats': {},
                           'application_name': '',
                           'application_token': '',
                           'client_token': '',
+                          'notification_sound': '',
                           'appid': ''}
           }
 
@@ -57,6 +58,7 @@ if is_package():
     APPDIR = os.path.join(ROOTDIR, APP)
     CHANGELOG = os.path.join(APPDIR, 'changelog')
     ICONDIR = os.path.join(ROOTDIR, 'icons')
+    SOUNDDIR = os.path.join(ROOTDIR, 'sounds')
     HTML_GRAPH = os.path.join(APPDIR, 'graph', 'graph.html')
     AUTOSTARTDIR = os.path.join(ROOTDIR, 'autostart')
 else:
@@ -66,6 +68,7 @@ else:
     DEBIANDIR = os.path.normpath(os.path.join(ROOTDIR, '../debian'))
     CHANGELOG = os.path.join(DEBIANDIR, 'changelog')
     ICONDIR = os.path.normpath(os.path.join(ROOTDIR, '../data/icons/'))
+    SOUNDDIR = os.path.normpath(os.path.join(ROOTDIR, '../data/sounds/'))
     HTML_GRAPH = os.path.join(ROOTDIR, 'graph', 'graph.html')
     AUTOSTARTDIR = os.path.normpath(
         os.path.join(ROOTDIR, '../data/autostart/'))
