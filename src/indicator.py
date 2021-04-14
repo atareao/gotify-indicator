@@ -338,8 +338,8 @@ def main():
 
     try:
         Cache.instanciate()
-    except Exception:
-        print('Could not cache images!')
+    except Exception as e:
+        print('Could not cache images!'+str(e))
 
     Notify.init('Gotify')
     Indicator()

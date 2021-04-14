@@ -22,6 +22,7 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
+import os
 
 from configurator import Configuration
 from config import CACHE_DIR
@@ -51,18 +52,21 @@ class Cache(threading.Thread):
         image = requests.get(imageurl, stream=True)
 
         image.raw.decode_content = True
+        if not os.path.exists(CACHE_DIR):
+            os.mkdir(CACHE_DIR)
+
         with open(CACHE_DIR + str(id), 'wb') as target:
             shutil.copyfileobj(image.raw, target)
             print("written to: " + CACHE_DIR + str(id))
 
-    def instanciate(self):
+    @staticmethod
+    def instanciate():
         configuration = Configuration()
         preferences = configuration.get('preferences')
 
         https_protocol = preferences['https_protocol']
         base_url = preferences['base_url']
         client_token = preferences['client_token']
-        cachepath = preferences['client_token']
 
         cache = Cache(https_protocol,
                       base_url,
