@@ -24,6 +24,7 @@
 # SOFTWARE.
 
 import gi
+
 try:
     gi.require_version('Gtk', '3.0')
     gi.require_version('Gdk', '3.0')
@@ -45,6 +46,7 @@ class LeftLabel(Gtk.Label):
         Gtk.Label.__init__(self)
         self.set_label(label)
         self.set_xalign(0)
+
 
 # class ClassicSwitch(Gt)
 
@@ -92,6 +94,16 @@ class Preferences(BaseDialog):
         self.autostart.set_halign(Gtk.Align.START)
         self.grid.attach(self.autostart, 1, 9, 1, 1)
 
+        self.grid.attach(Gtk.Separator(), 0, 11, 2, 1)
+        self.grid.attach(LeftLabel(_('Notification Sound:')), 0, 12, 1, 1)
+        self.notification_sound = Gtk.Entry.new()
+        self.notification_sound.set_editable(False)
+        self.notification_sound.connect('button_press_event', self.pickSound)
+        self.grid.attach(self.notification_sound, 1, 12, 1, 1)
+        self.notification_reset = Gtk.Button.new_with_label("Reset")
+        self.notification_reset.connect("clicked", self.resetSound)
+        self.grid.attach(self.notification_reset, 1, 13, 1, 1)
+
     def load(self):
         configuration = Configuration()
         preferences = configuration.get('preferences')
@@ -101,6 +113,11 @@ class Preferences(BaseDialog):
         self.application_name.set_text(preferences['application_name'])
         self.application_token.set_text(preferences['application_token'])
         self.client_token.set_text(preferences['client_token'])
+        self.notification_sound.set_text("")
+        try:
+            self.notification_sound.set_text(preferences['notification_sound'])
+        except IndexError:
+            print("No custom notification set!")
 
         self.theme_light.set_active(preferences['theme-light'])
 
@@ -120,6 +137,7 @@ class Preferences(BaseDialog):
         preferences['application_name'] = self.application_name.get_text()
         preferences['application_token'] = self.application_token.get_text()
         preferences['client_token'] = self.client_token.get_text()
+        preferences['notification_sound'] = self.notification_sound.get_text()
 
         preferences['theme-light'] = self.theme_light.get_active()
 
@@ -136,6 +154,30 @@ class Preferences(BaseDialog):
         else:
             if os.path.exists(autostart_file):
                 os.remove(autostart_file)
+
+    def resetSound(self, widget):
+        self.notification_sound.set_text("")
+
+    def pickSound(self, widget, event):
+        # https://python-gtk-3-tutorial.readthedocs.io/en/latest/dialogs.html#filechooserdialog
+        dialog = Gtk.FileChooserDialog(
+            title="Please choose a Notification Sound", parent=self, action=Gtk.FileChooserAction.OPEN
+        )
+        dialog.add_buttons(
+            Gtk.STOCK_CANCEL,
+            Gtk.ResponseType.CANCEL,
+            Gtk.STOCK_OPEN,
+            Gtk.ResponseType.OK,
+        )
+
+        filter_text = Gtk.FileFilter()
+        filter_text.set_name("mp3 files")
+        filter_text.add_mime_type("audio/mpeg")
+        dialog.add_filter(filter_text)
+
+        if dialog.run() == Gtk.ResponseType.OK:
+            self.notification_sound.set_text(dialog.get_filename())
+        dialog.destroy()
 
 
 if __name__ == '__main__':

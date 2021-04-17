@@ -50,6 +50,9 @@ import config
 from configurator import Configuration
 from client import GotifyClient
 from message_dialog import MessageDialog
+from cache import Cache
+from pydub import AudioSegment
+from pydub.playback import play
 
 
 class Indicator(object):
@@ -271,12 +274,22 @@ SOFTWARE.''')
 
     def on_message(self, message):
         message = json.loads(message)
-        icon = os.path.join(config.ICONDIR, 'gotify-indicator.svg')
+        icon = os.path.join(config.CACHE_DIR, str(message['appid']))
         if message['title'] != self.application_name:
             self.notification.update(message['title'],
                                      message['message'],
                                      icon)
             self.notification.show()
+            play(self.getNotificationSound())
+
+    def getNotificationSound(self):
+        path = os.path.join(config.SOUNDDIR, 'default.mp3')
+        configuration = Configuration()
+        preferences = configuration.get('preferences')
+        custom_path = preferences['notification_sound']
+        if custom_path:
+            path = custom_path
+        return AudioSegment.from_mp3(path)
 
     def start(self):
         configuration = Configuration()
@@ -322,10 +335,15 @@ def main():
             dbus.bus.REQUEST_NAME_REPLY_PRIMARY_OWNER:
         print("application already running")
         exit(0)
-    Notify.init('gotify-indicator')
+
+    try:
+        Cache.instanciate()
+    except Exception as e:
+        print('Could not cache images!'+str(e))
+
+    Notify.init('Gotify')
     Indicator()
     Gtk.main()
-
 
 if __name__ == '__main__':
     main()
