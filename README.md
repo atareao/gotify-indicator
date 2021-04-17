@@ -76,6 +76,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <table>
   <tr>
     <td align="center"><a href="https://www.atareao.es"><img src="https://avatars3.githubusercontent.com/u/298055?v=4" width="100px;" alt=""/><br /><sub><b>Lorenzo Carbonell</b></sub></a><br /><a href="https://github.com/atareao/fondos-productivos/commits?author=atareao" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/albanobattistella"><img src="https://avatars.githubusercontent.com/u/34811668" width="100px;" alt=""/><br /><sub><b>albanobattistella</b></sub></a><br /><a href="https://github.com/atareao/gotify-indicator/commits?author=albanobattistella" title="Code">💻</a></td>
   </tr>
 </table>
 
