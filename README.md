@@ -21,6 +21,7 @@ Before you begin, ensure you have met the following requirements:
 
 ```
 python3
+python3-pydub
 gir1.2-gtk-3.0
 gir1.2-glib-2.0
 gir1.2-gdkpixbuf-2.0
