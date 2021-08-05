@@ -70,7 +70,6 @@ class Indicator(object):
             AppIndicator3.IndicatorCategory.APPLICATION_STATUS)
         self.indicator.set_menu(self.build_menu())
         self.indicator.set_label('', '')
-        self.indicator.set_status(AppIndicator3.IndicatorStatus.ACTIVE)
         self.notification = Notify.Notification.new('', '', None)
         self.gotify_client = None
         self.load_preferences()
@@ -81,16 +80,19 @@ class Indicator(object):
                 icon = config.ICON_ACTIVED_LIGHT
             else:
                 icon = config.ICON_ACTIVED_DARK
+            self.indicator.set_status(AppIndicator3.IndicatorStatus.PASSIVE)
         elif active == SOCKET_ERROR:
             if self.theme_light:
                 icon = config.ICON_ERROR_LIGHT
             else:
                 icon = config.ICON_ERROR_DARK
+            self.indicator.set_status(AppIndicator3.IndicatorStatus.ATTENTION)
         else:
             if self.theme_light:
                 icon = config.ICON_PAUSED_LIGHT
             else:
                 icon = config.ICON_PAUSED_DARK
+            self.indicator.set_status(AppIndicator3.IndicatorStatus.PASSIVE)
         self.indicator.set_icon(icon)
 
     def load_preferences(self):
