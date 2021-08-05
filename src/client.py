@@ -48,6 +48,7 @@ class GotifyClient(threading.Thread):
         self.set_icon = None
         self.running = False
         self.error = False
+        self.notstopped = True
         self.ws = websocket.WebSocketApp(self.wss_url,
                                          on_message=on_message,
                                          on_error=self.on_error,
@@ -64,8 +65,8 @@ class GotifyClient(threading.Thread):
         self.set_running(True)
         self.ws.run_forever()
 
-        while True:
-            time.sleep(2)
+        while self.notstopped:
+            time.sleep(60)
             if self.debug:
                 print("Is Messagethread running: "+str(self.running))
 
@@ -79,6 +80,7 @@ class GotifyClient(threading.Thread):
     def close(self):
         self.ws.close()
         self.set_running(False)
+        self.notstopped = False
 
     def set_running(self, running):
         self.running = running
