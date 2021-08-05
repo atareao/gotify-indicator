@@ -77,10 +77,13 @@ class GotifyClient(threading.Thread):
     def set_icon_callback(self, seticonfunction):
         self.set_icon = seticonfunction
 
+    def stopWebsocket(self):
+        self.notstopped = False
+        self.close()
+
     def close(self):
         self.ws.close()
         self.set_running(False)
-        self.notstopped = False
 
     def set_running(self, running):
         self.running = running

@@ -277,10 +277,10 @@ SOFTWARE.''')
             self.stop()
 
     def stop(self):
-        self.set_icon(0)
+        self.set_icon(SOCKET_INACTIVE)
         if self.gotify_client is not None:
             if self.gotify_client.is_running():
-                self.gotify_client.close()
+                self.gotify_client.stopWebsocket()
         self.gotify_client = None
         self.menu_toggle_service.set_label(_('Start service'))
 
