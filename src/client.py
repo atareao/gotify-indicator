@@ -40,6 +40,7 @@ class GotifyClient(threading.Thread):
         self.wss_url = '{}://{}/stream'.format(ws_protocol, base_url)
         self.application_name = application_name
         self.application_token = application_token
+        self.debug = debug
         self.ws = websocket.WebSocketApp(self.wss_url,
                                          on_message=on_message,
                                          on_error=self.on_error,
@@ -51,8 +52,17 @@ class GotifyClient(threading.Thread):
         self.running = False
 
     def run(self):
+        if self.debug:
+            print("Start Messagethread")
         self.running = True
         self.ws.run_forever()
+
+        while True:
+            time.sleep(60)
+            if self.debug:
+                print("Is Messagethread running: "+str(self.running))
+            self.ws.run_forever()
+
 
     def close(self):
         self.ws.close()
@@ -72,6 +82,7 @@ class GotifyClient(threading.Thread):
         print(error)
 
     def on_close(self):
+        self.close()
         print("### closed ###")
 
     def get_health(self):
@@ -116,9 +127,11 @@ if __name__ == "__main__":
                           True)
         print(gc.get_health())
         gc.start()
+
         while True:
             time.sleep(5)
             gc.send_message("Ejemplo")
+
     except KeyboardInterrupt as e:
         gc.close()
         print(e)
