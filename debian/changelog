@@ -1,3 +1,10 @@
+gotify-indicator (0.2.0-0extras20.04.0) focal; urgency=medium
+
+  * Add imagecaching
+  * Add notification sound
+
+ -- Lorenzo Carbonell <lorenzo.carbonell.cerezo@gmail.com>  Sat, 17 Apr 2021 20:53:23 +0200
+
 gotify-indicator (0.1.1-0extras18.04.3) bionic; urgency=medium
 
   * Check if there is configuration
