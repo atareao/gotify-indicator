@@ -280,16 +280,25 @@ SOFTWARE.''')
                                      message['message'],
                                      icon)
             self.notification.show()
-            play(self.getNotificationSound())
+            try:
+                sound = self.getNotificationSound()
+                if sound.strip():
+                    play(AudioSegment.from_mp3(sound))
+            except Exception as e:
+                print("Exception while playing sound: "+str(e))
 
     def getNotificationSound(self):
-        path = os.path.join(config.SOUNDDIR, 'default.mp3')
+        path = ""  # os.path.join(config.SOUNDDIR, 'default.mp3')
         configuration = Configuration()
         preferences = configuration.get('preferences')
-        custom_path = preferences['notification_sound']
-        if custom_path:
-            path = custom_path
-        return AudioSegment.from_mp3(path)
+        try:
+            custom_path = preferences['notification_sound']
+            if custom_path:
+                path = custom_path
+        except:
+            print("No setting for notificationsound")
+
+        return path
 
     def start(self):
         configuration = Configuration()
