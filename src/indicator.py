@@ -25,6 +25,7 @@
 
 import sys
 import gi
+
 try:
     gi.require_version('Gtk', '3.0')
     gi.require_version('Gdk', '3.0')
@@ -54,6 +55,10 @@ from cache import Cache
 from pydub import AudioSegment
 from pydub.playback import play
 
+# also defined in client.py
+SOCKET_ACTIVE = 1
+SOCKET_INACTIVE = 0
+SOCKET_ERROR = -1
 
 class Indicator(object):
 
@@ -65,22 +70,29 @@ class Indicator(object):
             AppIndicator3.IndicatorCategory.APPLICATION_STATUS)
         self.indicator.set_menu(self.build_menu())
         self.indicator.set_label('', '')
-        self.indicator.set_status(AppIndicator3.IndicatorStatus.ACTIVE)
         self.notification = Notify.Notification.new('', '', None)
         self.gotify_client = None
         self.load_preferences()
 
-    def set_icon(self, active=True):
-        if active:
+    def set_icon(self, active=SOCKET_ACTIVE):
+        if active == SOCKET_ACTIVE:
             if self.theme_light:
                 icon = config.ICON_ACTIVED_LIGHT
             else:
                 icon = config.ICON_ACTIVED_DARK
+            self.indicator.set_status(AppIndicator3.IndicatorStatus.PASSIVE)
+        elif active == SOCKET_ERROR:
+            if self.theme_light:
+                icon = config.ICON_ERROR_LIGHT
+            else:
+                icon = config.ICON_ERROR_DARK
+            self.indicator.set_status(AppIndicator3.IndicatorStatus.ATTENTION)
         else:
             if self.theme_light:
                 icon = config.ICON_PAUSED_LIGHT
             else:
                 icon = config.ICON_PAUSED_DARK
+            self.indicator.set_status(AppIndicator3.IndicatorStatus.PASSIVE)
         self.indicator.set_icon(icon)
 
     def load_preferences(self):
@@ -265,10 +277,10 @@ SOFTWARE.''')
             self.stop()
 
     def stop(self):
-        self.set_icon(False)
+        self.set_icon(SOCKET_INACTIVE)
         if self.gotify_client is not None:
             if self.gotify_client.is_running():
-                self.gotify_client.close()
+                self.gotify_client.stopWebsocket()
         self.gotify_client = None
         self.menu_toggle_service.set_label(_('Start service'))
 
@@ -310,8 +322,8 @@ SOFTWARE.''')
                                               client_token,
                                               self.on_message,
                                               True)
+            self.gotify_client.set_icon_callback(self.set_icon)
             self.gotify_client.start()
-            self.set_icon(True)
             self.menu_toggle_service.set_label(_('Stop service'))
             return True
         message = _('Please configure Gotify Indicator')

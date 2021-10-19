@@ -78,6 +78,8 @@ ICON_ACTIVED_LIGHT = os.path.join(ICONDIR, 'gotify-indicator-active.svg')
 ICON_PAUSED_LIGHT = os.path.join(ICONDIR, 'gotify-indicator-paused.svg')
 ICON_ACTIVED_DARK = os.path.join(ICONDIR, 'gotify-indicator-active-dark.svg')
 ICON_PAUSED_DARK = os.path.join(ICONDIR, 'gotify-indicator-paused-dark.svg')
+ICON_ERROR_DARK = os.path.join(ICONDIR, 'gotify-indicator-error-dark.svg')
+ICON_ERROR_LIGHT = os.path.join(ICONDIR, 'gotify-indicator-error.svg')
 
 f = open(CHANGELOG, 'r')
 line = f.readline()

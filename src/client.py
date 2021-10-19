@@ -29,6 +29,10 @@ import requests
 import threading
 import json
 
+# also defined in indicator.py
+SOCKET_ACTIVE = 1
+SOCKET_INACTIVE = 0
+SOCKET_ERROR = -1
 
 class GotifyClient(threading.Thread):
     def __init__(self, https_protocol, base_url, application_name,
@@ -40,6 +44,11 @@ class GotifyClient(threading.Thread):
         self.wss_url = '{}://{}/stream'.format(ws_protocol, base_url)
         self.application_name = application_name
         self.application_token = application_token
+        self.debug = debug
+        self.set_icon = None
+        self.running = False
+        self.error = False
+        self.notstopped = True
         self.ws = websocket.WebSocketApp(self.wss_url,
                                          on_message=on_message,
                                          on_error=self.on_error,
@@ -48,15 +57,46 @@ class GotifyClient(threading.Thread):
                                                  client_token})
         if debug:
             websocket.enableTrace(True)
-        self.running = False
+        self.set_running(False)
 
     def run(self):
-        self.running = True
+        if self.debug:
+            print("Start Messagethread")
+        self.set_running(True)
         self.ws.run_forever()
+
+        while self.notstopped:
+            time.sleep(60)
+            if self.debug:
+                print("Is Messagethread running: "+str(self.running))
+
+            self.set_running(True)
+            self.ws.run_forever()
+            self.set_running(False)
+
+    def set_icon_callback(self, seticonfunction):
+        self.set_icon = seticonfunction
+
+    def stopWebsocket(self):
+        self.notstopped = False
+        self.close()
 
     def close(self):
         self.ws.close()
-        self.running = False
+        self.set_running(False)
+
+    def set_running(self, running):
+        self.running = running
+        if self.set_icon is not None:
+            if self.running:
+                self.set_icon(SOCKET_ACTIVE)
+                self.error = False
+            else:
+                if self.error:
+                    self.set_icon(SOCKET_ERROR)
+                else:
+                    self.set_icon(SOCKET_INACTIVE)
+
 
     def is_running(self):
         return self.running
@@ -70,8 +110,10 @@ class GotifyClient(threading.Thread):
 
     def on_error(self, error):
         print(error)
+        self.error = True
 
     def on_close(self):
+        self.close()
         print("### closed ###")
 
     def get_health(self):
@@ -116,9 +158,11 @@ if __name__ == "__main__":
                           True)
         print(gc.get_health())
         gc.start()
+
         while True:
             time.sleep(5)
             gc.send_message("Ejemplo")
+
     except KeyboardInterrupt as e:
         gc.close()
         print(e)
